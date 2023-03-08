@@ -1,0 +1,24 @@
+app:
+    url: ${APP_URL:"kairon.digite.com"}
+email:
+    enable: ${EMAIL_ENABLE:False}
+    sender:
+        email: ${EMAIL_SENDER_EMAIL:"changeit@changeit.com"}
+        password: ${EMAIL_SENDER_PASSWORD:"changeit"}
+        port: ${EMAIL_SENDER_PORT:587}
+        service: ${EMAIL_SENDER_SERVICE:"changeit"}
+        tls: ${EMAIL_SENDER_TLS:True}
+        userid: ${EMAIL_SENDER_USERID}
+    templates:
+        confirmation_subject: ${EMAIL_TEMPLATES_CONFIRMATION_SUBJECT:"Welcome to kAIron! Please verify your account."}
+        confirmed_subject: ${EMAIL_TEMPLATES_CONFIRMED_SUBJECT:"Verification complete! Build your first chatbot."}
+        password_reset_subject: ${EMAIL_TEMPLATES_PASSWORD_RESET_SUBJECT:"Password Reset"}
+        password_changed_subject: ${EMAIL_TEMPLATES_PASSWORD_CHANGED_SUBJECT:"Password Changed!"}
+        add_member_subject: ${EMAIL_TEMPLATES_ADD_MEMBER_SUBJECT:"Invitation to collaborate on BOT_NAME bot"}
+        add_member_confirmation_subject: ${EMAIL_TEMPLATES_ADD_MEMBER_CONFIRMATION_SUBJECT:"Invitation accepted by INVITED_PERSON_NAME"}
+        update_role_subject: ${EMAIL_TEMPLATES_UPDATE_ROLE_SUBJECT:"Member role updated on BOT_NAME bot"}
+        update_role_member_mail_body: ${EMAIL_TEMPLATES_UPDATE_ROLE_MEMBER_BODY:"Your role on BOT_NAME bot has been changed to NEW_ROLE:STATUS by MODIFIER_NAME."}
+        update_role_owner_mail_body: ${EMAIL_TEMPLATES_UPDATE_ROLE_OWNER_BODY:"Access to member MEMBER_EMAIL on BOT_NAME bot has been changed to NEW_ROLE:STATUS by MODIFIER_NAME."}
+        transfer_ownership_mail_body: ${EMAIL_TEMPLATES_UPDATE_ROLE_OWNER_BODY:"Access to member MEMBER_EMAIL on BOT_NAME bot has been changed to NEW_ROLE by MODIFIER_NAME. You are no more the owner of the bot. Your current role has been changed to admin."}
+        password_generated_subject: ${EMAIL_TEMPLATES_PASSWORD_GENERATED_SUBJECT:"Welcome to kAIron!"}
+        untrusted_login_subject: ${EMAIL_TEMPLATES_UNTRUSTED_LOGIN_SUBJECT:"Suspicious sign-in detected!"}

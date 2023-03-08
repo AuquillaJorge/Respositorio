@@ -1,0 +1,157 @@
+database:
+  url: ${DATABASE_URL:"mongomock://23.251.147.214/test"}
+  test_db: ${TEST_DB:"test_conversations"}
+  load_test: ${DATABASE_URL:"mongomock://23.251.147.214:27017/conversations"}
+
+app:
+  server_url: ${APP_SERVER_URL:"http://testserver"}
+  enable_sso_only: ${ENABLE_SSO_ONLY:false}
+
+user:
+  reset_password_request_limit: ${RESET_PASSWORD_REQUEST_LIMIT:3}
+  reset_password_cooldown_period: ${RESET_PASSWORD_COOLDOWN_PERIOD:120}
+  validate_trusted_device: ${VALIDATE_TRUSTED_DEVICE:false}
+
+storage:
+  assets:
+    root_dir: ${BOT_ASSETS_ROOT_DIRECTORY:"application"}
+    bucket: ${BOT_ASSETS_BUCKET:"ui-bucket"}
+    allowed_extensions: ${BOT_ASSETS_ALLOWED_EXTENSIONS:[".png",".jpeg",".jpg"]}
+
+security:
+  secret_key: ${SECRET_KEY:"b9d01861392757c66daaf1f214268e2739a5baac935071d06e2ea71a66dc5bcd"}
+  algorithm: "HS256"
+  token_expire: ${TOKEN_EXPIRE:10080}
+  refresh_token_expire: ${REFRESH_TOKEN_EXPIRE:11520}
+  test_user_password: "Welcome@1"
+  fernet_key: ${FERNET_KEY:"gH8F9M-3GTxT1z-XyvJXZlCfxfbMuFr2HgXDHl7Xkuw="}
+  validate_recaptcha: ${VALIDATE_RECAPTCHA:false}
+  recaptcha_secret: ${RECAPTCHA_SECRET}
+  recaptcha_url: https://www.google.com/recaptcha/api/siteverify
+  unmasked_char_strategy: ${SECRET_UNMASKED_CHAR_STRATEGY:"from_right"}
+  unmasked_char_count: ${SECRET_UNMASKED_CHAR_COUNT:2}
+
+sso:
+  google:
+    enable: ${GOOGLE_SSO_ENABLE:false}
+    client_id: ${GOOGLE_CLIENT_ID:"asdfghjklqwe-qwertyuiopasdfghjklzxcvbnm.apps.googleusercontent.com"}
+    client_secret: ${GOOGLE_CLIENT_SECRET:"qwertyu-qwertyuiopasdfghjkl" }
+  facebook:
+    enable: ${FACEBOOK_SSO_ENABLE:false}
+    client_id: ${FACEBOOK_CLIENT_ID:"1234567890adsfg"}
+    client_secret: ${FACEBOOK_CLIENT_SECRET:"asdfghjklqwertyuiopzxcvbnmpoiu" }
+  linkedin:
+    enable: ${LINKEDIN_SSO_ENABLE:false}
+    client_id: ${LINKEDIN_CLIENT_ID:"asdfghjklzxcvb"}
+    client_secret: ${LINKEDIN_CLIENT_SECRET:"qwertyuiopasdf" }
+  redirect_url: ${REDIRECT_URL:"http://23.251.147.214:8080/callback/"}
+
+augmentation:
+  paraphrase_url: ${PARAPHRASE_URL:"http://23.251.147.214:8000/paraphrases"}
+  question_generation_url: ${QUESTION_GENERATION_URL:"http://23.251.147.214:8000/questions"}
+  paraphrase_gpt_url: ${PARAPHRASE_GPT_URL:"http://23.251.147.214:8000/paraphrases/gpt"}
+
+model:
+  retention: ${MODEL_RETENTION_COUNT:4}
+  train:
+    limit_per_day: ${TRAINING_LIMIT_PER_DAY:2}
+    default_model_training_config_path: ${DEFAULT_MODEL_TRAINING_CONFIG_PATH:"./tests/testing_data/model_training_config/config.yml"}
+  test:
+    limit_per_day: ${TESTING_LIMIT_PER_DAY:5}
+    augmentation_similarity_threshold: ${TEST_DATA_AUGMENTATION_SIMILARITY_THRESHOLD:0.70}
+  data_importer:
+    limit_per_day: ${IMPORTING_LIMIT_PER_DAY:10}
+  agent:
+    url: ${AGENT_URL}
+  config_properties:
+    epoch_max_limit: ${EPOCH_MAX_LIMIT:200}
+
+action:
+  url: ${ACTION_SERVER_URL:"http://kairon.23.251.147.214:5055/webhook"}
+  request_timeout: ${ACTION_SERVER_REQUEST_TIMEOUT:2}
+
+data_generation:
+  limit_per_day: ${TRAIN_LIMIT_PER_DAY:3}
+  kairon_url: ${KAIRON_URL}
+
+elasticsearch:
+  enable: ${ENABLE_APM:false}
+  apm_server_url: ${APM_SERVER_URL}
+  service_name: ${APM_APPLICATION_NAME:"Kairon"}
+  env_type: ${KAIRON_ENV_TYPE:"development"}
+  secret_token: ${APM_SECRET_TOKEN}
+
+history_server:
+  url: ${KAIRON_HISTORY_SERVER_URL:"http://23.251.147.214:8083"}
+  token: ${KAIRON_HISTORY_SERVER_TOKEN:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtleSI6ImI5ZDAxODYxMzkyNzU3YzY2ZGFhZjFmMjE0MjY4ZTI3MzlhNWJhYWM5MzUwNzFkMDZlMmVhNzFhNjZkYzViY2QifQ.eyJzdWIiOiJrYWlyb24uZGlnaXRlLmNvbSIsIm5hbWUiOiJrYWlyb24iLCJpYXQiOjE1MTYyMzkwMjJ9.3SOONqzoeX1tnMnUH5BVaOtZ7mElgwxyD1xpPvTQTrs"}
+  deletion:
+    archive_db: ${ARCHIVE_DB:"conversations_archive"}
+
+notifications:
+  enable: ${ENABLE_NOTIFICATIONS:false}
+  server_endpoint: ${PUSH_SERVER_ENDPOINT}
+
+events:
+  server_url: ${EVENT_SERVER_ENDPOINT:"http://23.251.147.214:5001"}
+  executor:
+    type: ${EVENTS_EXECUTOR_TYPE}
+    region: ${EVENTS_EXECUTOR_REGION}
+  queue:
+    type: ${EVENTS_QUEUE_TYPE:"mongo"}
+    url: ${EVENTS_QUEUE_URL:"mongodb://23.251.147.214:27017/events"}
+    name: kairon_events
+  task_definition:
+    model_training: ${MODEL_TRAINING_TASK_DEFINITION}
+    model_testing: ${MODEL_TESTING_TASK_DEFINITION}
+    data_importer: ${TRAINING_DATA_IMPORTER_TASK_DEFINITION}
+    delete_history: ${DELETE_HISTORY_TASK_DEFINITION}
+    multilingual: ${MULTILINGUAL_TASK_DEFINITION}
+    data_generator: ${DATA_GENERATION_TASK_DEFINITION}
+  audit_logs:
+    retention: ${AUDIT_LOGS_RETENTION_PERIOD:365}
+
+evaluator:
+  url: ${EXPRESSION_EVALUATOR_ENDPOINT:"http://23.251.147.214:8080/format"}
+
+multilingual:
+  enable: ${ENABLE_MULTILINGUAL_BOTS:false}
+  project_id: ${MULTILINGUAL_TRANSLATOR_PROJECT_ID}
+  limit_per_day: ${TRANSLATION_LIMIT:10}
+  enable_chat_client: ${ENABLE_MULTILINGUAL_CHAT_CLIENT:false}
+  service_account_creds:
+    type: ${SERVICE_ACCOUNT_TYPE}
+    private_key_id: ${SERVICE_ACCOUNT_PRIVATE_KEY_ID}
+    private_key: ${SERVICE_ACCOUNT_PRIVATE_KEY}
+    client_email: ${SERVICE_ACCOUNT_CLIENT_EMAIL}
+    client_id: ${SERVICE_ACCOUNT_CLIENT_ID}
+    auth_uri: ${SERVICE_ACCOUNT_AUTH_URL:"https://accounts.google.com/o/oauth2/auth"}
+    token_uri: ${SERVICE_ACCOUNT_TOKEN_URL:"https://oauth2.googleapis.com/token"}
+    auth_provider_x509_cert_url: ${SERVICE_ACCOUNT_AUTH_PROVIDER_CERT_URL:"https://www.googleapis.com/oauth2/v1/certs"}
+    client_x509_cert_url: ${SERVICE_ACCOUNT_CLIENT_CERT_URL}
+
+tracker:
+  type: ${TRACKER_TYPE:"static"}
+  url: ${TRACKER_URL:"mongodb://23.251.147.214:27017/rasa"}
+  collection: ${TRACKER_COLLECTION:"conversations"}
+  authentication:
+    token: ${AUTH_TOKEN:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtleSI6ImI5ZDAxODYxMzkyNzU3YzY2ZGFhZjFmMjE0MjY4ZTI3MzlhNWJhYWM5MzUwNzFkMDZlMmVhNzFhNjZkYzViY2QifQ.eyJzdWIiOiJrYWlyb24uZGlnaXRlLmNvbSIsIm5hbWUiOiJrYWlyb24iLCJpYXQiOjE1MTYyMzkwMjJ9.3SOONqzoeX1tnMnUH5BVaOtZ7mElgwxyD1xpPvTQTrs"}
+
+plugins:
+  location:
+    enable: ${ENABLE_LOCATION_PLUGIN}
+    token: ${LOCATION_PLUGIN_TOKEN}
+  gpt:
+    url: "https://api.openai.com/v1/completions"
+    temperature: 0.7
+    model: "text-davinci-003"
+
+idp:
+  enable: ${IDP_ENABLED:false}
+  server_url: ${KEYCLOAK_SERVER_URL}
+  admin_username: ${ADMIN_USERNAME}
+  admin_password: ${ADMIN_PASSWORD}
+  callback_frontend_url: ${CALLBACK_FRONTEND_URL}
+  type: ${IDP_TYPE:idp}
+
+cors:
+  origin: ${ALLOWED_ORIGIN:["*"]}
